@@ -1,0 +1,55 @@
+<% layout('layout/boilerplate') %>
+<div class="row">
+    <div class="col-6">
+        <div class="card" style="width: 34.43rem;">
+            <img src="<%=capm.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=capm.title%></h5>
+              <p class="card-text"><%=capm.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%=capm.location%></li>
+              <li class="list-group-item">$<%=capm.price%></li>
+             
+            </ul>
+            <div class="card-body">
+                <a href="/campground/<%=capm._id%>/edit"  class="btn btn-info" class="card-link">Edit</a>
+                <br>
+                <br>
+                <form class="d-inline" action="/campground/<%=capm._id%>?_method=DELETE" method="post" >
+                    <button class="btn btn-danger">DELETE</button>
+                </form>
+            </div>
+        </div>  
+    </div>
+    <div class="col-6">
+        <h1>Leave a Review ✳️</h1>
+            <form action="/campground/<%=capm._id%>/review" method="post" class="validated-form">
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range" required>
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">Review</label>
+                    <textarea name="review[body]" cols="10" rows="3" id="body" class="form-control" required></textarea>
+                </div>
+                <button class="btn btn-info">Add Review</button>
+            </form>
+            <h4>Reviews By Diffrent Users 📓 </h4>
+            <% for(let rev of capm.review) { %>
+                <div class="mb-3 card">
+                   <div class="card-body border border-warning p-4 ">
+                       <form action="/campground/<%=capm._id%>/review/<%=rev._id%>?_method=DELETE" method="post">
+                        <h5 class="card-title">Rating: <%=rev.rating%></h5>
+                        <p>Review: <%=rev.body%></p>
+                        <button class="btn btn-danger">Delete</button>
+                       </form>
+                   </div>
+                </div>
+            <% } %>
+    </div>
+</div>
+
+<br>
+<h2><a href="/campground">GOBACK</a></h2>
+  

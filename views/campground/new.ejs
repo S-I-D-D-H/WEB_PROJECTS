@@ -1,0 +1,78 @@
+<% layout('layout/boilerplate') %>
+   <div class="row">
+    <h1 class="text-center">Add a new campground</h1>
+    <form action="/campground" method="post" novalidate class="validated-form">
+       <div clas="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" placeholder="title" name="campground[title]" id="title" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please give a title.
+              </div>
+       </div>
+        <br>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" placeholder="location" name="campground[location]" id="location" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please give a location.
+              </div>
+       </div>
+       <br>
+       <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" placeholder="0.000" name="campground[price]" id="price" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please give a price.
+              </div>
+       </div>
+        <br>
+        <div clas="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="url" placeholder="image" name="campground[image]" id="image" class="form-control" required>
+        </div>
+        <br>
+        <div clas="mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <textarea placeholder="Description" name="campground[description]" id="Description" class="form-control" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please give a description.
+              </div>
+           </div>   
+           <br>
+        <button class="btn btn-success"  class="btn btn-primary btn-lg">ADD</button>
+    </form>
+   </div>
+ <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.validated-form')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+ </script>
